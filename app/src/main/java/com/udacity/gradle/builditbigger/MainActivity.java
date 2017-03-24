@@ -1,16 +1,18 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.udacity.gradle.jokeprovider.JokeProvider;
+import com.udacity.gradle.jokeviewer.JokeViewerActivity;
 
-
+/**
+ * The main activity for the Build It Bigger app.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,12 +43,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Handle the clicking of the "Tell Joke" button, by retrieving the joke
+     * and displaying it.
+     * @param view the button that was clicked
+     */
     public void tellJoke(View view) {
+        // get the joke from the joke provider
         String joke = (new JokeProvider()).getJoke();
-        Toast toast = Toast.makeText(this, joke, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+        // display the joke
+        displayJoke(joke);
     }
 
+    /**
+     * Display a joke by passing it to the joke viewer activity.
+     * @param joke the joke to display
+     */
+    private void displayJoke(String joke) {
+        Intent intent = new Intent(this, JokeViewerActivity.class);
+        intent.putExtra(JokeViewerActivity.KEY_JOKE, joke);
+        startActivity(intent);
+    }
 
 }
