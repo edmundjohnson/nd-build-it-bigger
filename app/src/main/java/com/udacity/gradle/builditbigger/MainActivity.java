@@ -1,14 +1,12 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.udacity.gradle.jokeprovider.JokeProvider;
-import com.udacity.gradle.jokeviewer.JokeViewerActivity;
 
 /**
  * The main activity for the Build It Bigger app.
@@ -44,25 +42,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Handle the clicking of the "Tell Joke" button, by retrieving the joke
-     * and displaying it.
+     * Handle the clicking of the "Tell Joke" button.
      * @param view the button that was clicked
      */
     public void tellJoke(View view) {
-        // get the joke from the joke provider
-        String joke = (new JokeProvider()).getJoke();
-        // display the joke
-        displayJoke(joke);
-    }
-
-    /**
-     * Display a joke by passing it to the joke viewer activity.
-     * @param joke the joke to display
-     */
-    private void displayJoke(String joke) {
-        Intent intent = new Intent(this, JokeViewerActivity.class);
-        intent.putExtra(JokeViewerActivity.KEY_JOKE, joke);
-        startActivity(intent);
+        // Start a background task to get a joke from the backend and
+        // pass it to the joke viewer for display
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
     }
 
 }
