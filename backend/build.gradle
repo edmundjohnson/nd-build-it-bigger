@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.50'
+        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.42'
     }
 }
 
@@ -38,7 +38,6 @@ appengine {
         getClientLibsOnBuild = true
         getDiscoveryDocsOnBuild = true
     }
-    // TODO: Remove this!
     // For testing on physical device, rather than emulator.
-    httpAddress = "0.0.0.0"
+    //httpAddress = "0.0.0.0"
 }

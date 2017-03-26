@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import static com.udacity.gradle.jokeviewer.R.id.txtJoke;
-
-
 /**
  * Fragment which displays a joke.
  */
@@ -25,7 +22,7 @@ public class JokeViewerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_joke_viewer, container, false);
 
         // Initialise the fragment view references.
-        mTxtJoke = (TextView) view.findViewById(txtJoke);
+        mTxtJoke = (TextView) view.findViewById(R.id.txt_joke);
 
         return view;
     }

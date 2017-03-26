@@ -8,7 +8,7 @@
     tools:context=".JokeViewerFragment">
 
     <TextView
-        android:id="@+id/txtJoke"
+        android:id="@+id/txt_joke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

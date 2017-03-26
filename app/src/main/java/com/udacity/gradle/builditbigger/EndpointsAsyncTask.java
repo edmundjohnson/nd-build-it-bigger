@@ -20,6 +20,12 @@ import java.io.IOException;
  */
 class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private static MyApi myApiService = null;
+
+    // 10.0.2.2 is localhost's IP address in Android emulator
+    private static final String BACKEND_ROOT_URL = "http://10.0.2.2:8080/_ah/api/";
+    // Example URL for testing on physical device rather than emulator
+    //private static final String BACKEND_ROOT_URL = "http://192.168.123.16:8080/_ah/api/";
+
     private Context context;
 
     @Override
@@ -28,11 +34,8 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
-                    // - 10.0.2.2 is localhost's IP address in Android emulator
+                    .setRootUrl(BACKEND_ROOT_URL)
                     // - turn off compression when running against local devappserver
-                    //TODO: test on emulator!
-                    //.setRootUrl("http://10.0.2.2:8080/_ah/api/")
-                    .setRootUrl("http://192.168.123.16:8080/_ah/api/")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -45,7 +48,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
         }
 
         context = params[0].first;
-        String name = params[0].second;
+        //String name = params[0].second;
 
         try {
             //return myApiService.sayHi(name).execute().getData();
