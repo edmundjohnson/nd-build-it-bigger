@@ -7,6 +7,7 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -18,11 +19,15 @@ import com.google.android.gms.ads.InterstitialAd;
 public class MainActivity extends AppCompatActivity {
 
     private InterstitialAd mInterstitialAd;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        hideProgressBar();
 
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
@@ -77,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
      * Display a joke.
      */
     private void displayJoke() {
+        showProgressBar();
+
         // Start a background task to get a joke from the backend and
         // pass it to the joke viewer for display
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
@@ -91,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         mInterstitialAd.loadAd(adRequest);
+    }
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 
 }

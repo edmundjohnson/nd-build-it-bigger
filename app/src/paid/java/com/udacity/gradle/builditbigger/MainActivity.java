@@ -7,16 +7,22 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 /**
  * The main activity for the Build It Bigger app.
  */
 public class MainActivity extends AppCompatActivity {
 
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        hideProgressBar();
     }
 
     @Override
@@ -46,9 +52,19 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button that was clicked
      */
     public void tellJoke(View view) {
+        showProgressBar();
+
         // Start a background task to get a joke from the backend and
         // pass it to the joke viewer for display
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+    }
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 
 }

@@ -2,6 +2,7 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.util.Pair;
 import android.os.AsyncTask;
 
@@ -26,7 +27,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
     // Example URL for testing on physical device rather than emulator
     //private static final String BACKEND_ROOT_URL = "http://192.168.123.16:8080/_ah/api/";
 
-    private Context context;
+    private Context mContext;
 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
@@ -47,7 +48,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
             myApiService = builder.build();
         }
 
-        context = params[0].first;
+        mContext = params[0].first;
         //String name = params[0].second;
 
         try {
@@ -60,7 +61,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
 
     @Override
     protected void onPostExecute(String result) {
-        displayJoke(context, result);
+        displayJoke(mContext, result);
     }
 
     /**
@@ -69,11 +70,15 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
      * @param joke the joke to display
      */
     private void displayJoke(Context context, String joke) {
-        if (context != null && joke != null && !joke.isEmpty()) {
-            //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(context, JokeViewerActivity.class);
-            intent.putExtra(JokeViewerActivity.KEY_JOKE, joke);
-            context.startActivity(intent);
+        if (context != null) {
+            ((MainActivity) context).hideProgressBar();
+
+            if (joke != null && !joke.isEmpty()) {
+                //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, JokeViewerActivity.class);
+                intent.putExtra(JokeViewerActivity.KEY_JOKE, joke);
+                context.startActivity(intent);
+            }
         }
     }
 
