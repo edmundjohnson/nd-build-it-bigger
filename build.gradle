@@ -17,3 +17,15 @@ allprojects {
         jcenter()
     }
 }
+
+task runInstrumentedTests {
+    mustRunAfter ":backend:startBackendInDaemonMode"
+    dependsOn ":app:connectedCheck"
+}
+
+task performAutomatedTests {
+    dependsOn ":backend:startBackendInDaemonMode"
+    dependsOn "runInstrumentedTests"
+    finalizedBy ":backend:appengineStop"
+}
+

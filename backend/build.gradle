@@ -41,3 +41,10 @@ appengine {
     // For testing on physical device, rather than emulator.
     //httpAddress = "0.0.0.0"
 }
+
+task startBackendInDaemonMode {
+    appengine {
+        daemon = true
+    }
+    dependsOn ":backend:appengineRun"
+}
