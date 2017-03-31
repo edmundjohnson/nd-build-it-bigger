@@ -1,5 +1,12 @@
 # Gradle for Android and Java Final Project
 
+This is a joke telling Android app, submitted to Udacity by [Edmund Johnson](https://github.com/edmundjohnson)
+as part of an Android Nanogree program.
+The app was created from an [initial version provided by Udacity](https://github.com/udacity/ud867/tree/master/FinalProject).
+
+
+The original README information provided by Udacity is as follows:
+
 In this project, you will create an app with multiple flavors that uses
 multiple libraries and Google Cloud Endpoints. The finished app will consist
 of four modules. A Java library that provides jokes, a Google Cloud Endpoints
@@ -14,7 +21,7 @@ behavior of the Gradle build tool, allowing automation of repetitive tasks.
 Particularly, factoring functionality into libraries and creating product
 flavors allow for much bigger projects with minimal added complexity.
 
-##What Will I Learn?
+## What Will I Learn?
 
 You will learn the role of Gradle in building Android Apps and how to use
 Gradle to manage apps of increasing complexity. You'll learn to:
@@ -26,7 +33,7 @@ Gradle to manage apps of increasing complexity. You'll learn to:
 * Use the Gradle App Engine plugin to deploy a backend
 * Configure an integration test suite that runs against the local App Engine development server
 
-##How Do I Complete this Project?
+## How Do I Complete this Project?
 
 ### Step 0: Starting Point
 
@@ -137,3 +144,7 @@ Once you have a functioning project, consider adding more features to test your 
 * Make the free app variant display interstitial ads between the main activity and the joke-displaying activity.
 * Have the app display a loading indicator while the joke is being fetched from the server.
 * Write a Gradle task that starts the GCE dev server, runs all the Android tests, and shuts down the dev server.
+
+## License
+
+The license for this repository can be viewed in [LICENSE](https://github.com/edmundjohnson/nd-build-it-bigger/blob/master/LICENSE)
